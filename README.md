@@ -1,3 +1,3 @@
 # react-dosen-app
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/vitejs-vite-ezromj)
+[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/luky-talentlytica-test)
