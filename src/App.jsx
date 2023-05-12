@@ -26,7 +26,7 @@ function App() {
       ...result,
       [id]: {
         ...result[id],
-        [mId]: e.target.value,
+        [mId]: parseInt(e.target.value),
       },
     });
   };
