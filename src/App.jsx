@@ -1,35 +1,17 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
 
 function App() {
-  // saya menggunakan array karena berdasarkan real-world use case (menggunakan id sebagai target), daripada menggunakan pola iterasi mahasiswa 1 sampai n
-  const [mahasiswa, setMahasiswa] = useState([
-    'mahasiswa_1',
-    'mahasiswa_2',
-    'mahasiswa_2',
-    'mahasiswa_3',
-    'mahasiswa_4',
-    'mahasiswa_5',
-    'mahasiswa_6',
-    'mahasiswa_7',
-    'mahasiswa_8',
-    'mahasiswa_9',
-    'mahasiswa_10',
-  ]);
-    // saya menggunakan array karena berdasarkan real-world use case (menggunakan id sebagai target), daripada menggunakan pola iterasi penelitian 1 sampai n
-  const [penelitian, setPenelitian] = useState([
-    'penelitian_1',
-    'penelitian_2',
-    'penelitian_3',
-    'penelitian_4',
-  ]);
+  const mahasiswa = Array.from({ length: 10 }).map((it, index) => {
+    return { id: `mahasiswa${index + 1}`, name: `Mahasiswa ${index + 1}` };
+  });
+  const penelitian = Array.from({ length: 4 }).map((it, index) => {
+    return { id: `penelitian_${index + 1}`, name: `Penelitian ${index + 1}` };
+  });
   const [result, setResult] = useState(
     penelitian.reduce(
-      (research, rIdx) => (
-        (research[rIdx] = mahasiswa.reduce(
-          (acc, curr) => ((acc[curr] = ''), acc),
+      (research, { id }) => (
+        (research[id] = mahasiswa.reduce(
+          (acc, { id: mIdx }) => ((acc[mIdx] = 0), acc),
           {}
         )),
         research
@@ -37,7 +19,90 @@ function App() {
       {}
     )
   );
-  return <>{JSON.stringify(result)}</>;
+
+  const handleChangeValue = (e, id, mId) => {
+    e.preventDefault();
+    setResult({
+      ...result,
+      [id]: {
+        ...result[id],
+        [mId]: e.target.value,
+      },
+    });
+  };
+
+  const [output, setOutput] = useState({});
+
+  function Output() {
+    if (output.length <= 0) {
+      return;
+    }
+    return <code>{JSON.stringify(output, null, 4)}</code>;
+  }
+  return (
+    <>
+      <div className="w-full container mx-auto flex flex-col gap-y-3 my-4">
+        <table className="table-auto w-full text-sm text-center text-gray-500">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
+            <tr>
+              <th className="px-6 py-3"></th>
+              {penelitian.map(({ id, name }) => {
+                return (
+                  <th key={id} className="px-6 py-3">
+                    {name}
+                  </th>
+                );
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            {mahasiswa.map(({ id: mId, name: mahas }) => {
+              return (
+                <tr key={mId} className="bg-white border-b ">
+                  <th className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                    {mahas}
+                  </th>
+                  {penelitian.map(({ id }) => {
+                    return (
+                      <td key={id} className="px-6 py-4">
+                        <select
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                          value={result[id][mId]}
+                          onChange={(e) => handleChangeValue(e, id, mId)}
+                        >
+                          {Array.from({ length: 11 }).map((it, index) => (
+                            <option key={index}>{index}</option>
+                          ))}
+                        </select>
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+        <div>
+          <button
+            className="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
+            onClick={() => setOutput(result)}
+          >
+            Simpan
+          </button>
+          <button
+            className="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
+            onClick={() => setOutput('')}
+          >
+            Reset
+          </button>
+        </div>
+        <div className="bg-black w-full p-5 text-white whitespace-pre">
+          Output: <br />
+          <Output />
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default App;
