@@ -1,3 +1,9 @@
 # react-dosen-app
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/luky-talentlytica-test)
+```
+pnpm i
+
+pnpm dev
+```
+
+[Available on StackBlitz ⚡️](https://stackblitz.com/edit/luky-talentlytica-test)
