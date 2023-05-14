@@ -20,12 +20,12 @@ function App() {
     )
   );
 
-  const handleChangeValue = (e, id, mId) => {
+  const handleChangeValue = (e, pId, mId) => {
     e.preventDefault();
     setResult({
       ...result,
-      [id]: {
-        ...result[id],
+      [pId]: {
+        ...result[pId],
         [mId]: parseInt(e.target.value),
       },
     });
@@ -46,10 +46,10 @@ function App() {
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
             <tr>
               <th className="px-6 py-3"></th>
-              {penelitian.map(({ id, name }) => {
+              {penelitian.map(({ id: pId, name: pName }) => {
                 return (
-                  <th key={id} className="px-6 py-3">
-                    {name}
+                  <th key={pId} className="px-6 py-3">
+                    {pName}
                   </th>
                 );
               })}
@@ -62,13 +62,13 @@ function App() {
                   <th className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                     {mahas}
                   </th>
-                  {penelitian.map(({ id }) => {
+                  {penelitian.map(({ id: pId }) => {
                     return (
-                      <td key={id} className="px-6 py-4">
+                      <td key={pId} className="px-6 py-4">
                         <select
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                          value={result[id][mId]}
-                          onChange={(e) => handleChangeValue(e, id, mId)}
+                          value={result[pId][mId]}
+                          onChange={(e) => handleChangeValue(e, pId, mId)}
                         >
                           {Array.from({ length: 11 }).map((it, index) => (
                             <option key={index}>{index}</option>
