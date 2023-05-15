@@ -5,7 +5,10 @@ function App() {
     return { id: `mahasiswa${index + 1}`, name: `Mahasiswa ${index + 1}` };
   });
   const penelitian = Array.from({ length: 4 }).map((it, index) => {
-    return { id: `penelitian_${index + 1}`, name: `Penelitian ${index + 1}` };
+    return {
+      id: `aspek_penelitian_${index + 1}`,
+      name: `Aspek Penelitian ${index + 1}`,
+    };
   });
   const [result, setResult] = useState(
     penelitian.reduce(
