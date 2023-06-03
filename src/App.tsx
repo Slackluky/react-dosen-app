@@ -34,7 +34,7 @@ function App() {
     });
   };
 
-  const [output, setOutput] = useState({});
+  const [output, setOutput] : [object, Function] = useState({});
 
   function Output() {
     if (Object.keys(output).length <= 0) {
