@@ -34,10 +34,10 @@ function App() {
     });
   };
 
-  const [output, setOutput] = useState({});
+  const [output, setOutput] : [object, Function] = useState({});
 
   function Output() {
-    if (output.length <= 0) {
+    if (Object.keys(output).length <= 0) {
       return;
     }
     return <code>{JSON.stringify(output, null, 4)}</code>;
