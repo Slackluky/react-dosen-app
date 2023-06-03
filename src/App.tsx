@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Icon } from '@iconify/react';
 
 function App() {
   const mahasiswa = Array.from({ length: 10 }).map((it, index) => {
@@ -61,9 +62,13 @@ function App() {
           <tbody>
             {mahasiswa.map(({ id: mId, name: mahas }) => {
               return (
-                <tr key={mId} className="bg-white border-b ">
-                  <th className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                <tr key={mId} className="bg-white border-b">
+                  <th className="px-6 h-full font-medium text-gray-900">
+                    <span className='h-full flex items-center gap-x-3 justify-center'>
+                    <Icon icon="material-symbols:account-circle" className='text-[24px] text-gray-500'></Icon>
                     {mahas}
+                    </span>
+                    
                   </th>
                   {penelitian.map(({ id: pId }) => {
                     return (
