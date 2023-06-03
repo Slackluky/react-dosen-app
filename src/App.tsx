@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-no-useless-fragment */
-/* eslint-disable react/jsx-filename-extension */
 /* eslint-disable react/no-unstable-nested-components */
 import React, { useState } from 'react';
 import { Icon } from '@iconify/react';
