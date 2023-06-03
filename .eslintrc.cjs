@@ -22,7 +22,7 @@ module.exports = {
         'react-refresh/only-export-components': 'warn',
         'react/jsx-indent': ['error', 4],
         'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
-        '@typescript-eslint/indent': ['error', 4, { ignoredNodes: ['JSXElement *', 'JSXElement'] }],
+        '@typescript-eslint/indent': ['error', 4],
         indent: 'off',
         'react/jsx-uses-react': 'error',
         'linebreak-style': ['error', 'windows'],
