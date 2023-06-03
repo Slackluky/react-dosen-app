@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 function App() {
   const mahasiswa = Array.from({ length: 10 }).map((it, index) => {
@@ -37,8 +37,8 @@ function App() {
   const [output, setOutput] = useState({});
 
   function Output() {
-    if (output.length <= 0) {
-      return;
+    if (Object.keys(output).length <= 0) {
+      return <></>;
     }
     return <code>{JSON.stringify(output, null, 4)}</code>;
   }
@@ -69,6 +69,7 @@ function App() {
                     return (
                       <td key={pId} className="px-6 py-4">
                         <select
+                          title="change student value"
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                           value={result[pId][mId]}
                           onChange={(e) => handleChangeValue(e, pId, mId)}
