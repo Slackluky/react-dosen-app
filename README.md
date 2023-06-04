@@ -6,7 +6,7 @@ pnpm i
 pnpm dev
 ```
 
-### recomended environtment:
+### recomended environment:
 
 ```
 typescript: v5.0.4 < 5.1.0
